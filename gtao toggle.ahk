@@ -96,13 +96,14 @@ class Toggles {
 
 
 t := Toggles()
-*>^F1::t.toggle("hold", "w")
-*>^F1::t.toggle("hold", "w")
-*>^F2::t.toggle("spam", "e")
-*>^F3::t.toggle("spam", "LCtrl", 300, 10000)
-*>^F4::t.toggle("spam", "Click")
-*>^F5::t.toggle("hold", "x")
-*>^F6::t.toggle("hold", "LShift")
-*>^F7::t.toggle("spam", "Enter")
+*>^F1::t.toggle("hold", "w",, 445000)
+*>^F2:: {
+    if t.toggles.Has("w") {
+        t.toggle("hold", "w")
+    }
+    restartGTA(3)
+    t.toggle("hold", "w")
+}
 
 ^+F12::t.stopAll()
+
