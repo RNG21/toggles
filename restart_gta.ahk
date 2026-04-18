@@ -23,7 +23,7 @@ restartGTA(multiplier := 1) {
     }
     Run("steam://rungameid/3240220")
     WinWait("Grand Theft Auto V",, 120)
-    Sleep(75000 * multiplier)
+    Sleep(70000 * multiplier)
     WinActivate("ahk_exe GTA5_Enhanced.exe")
 
 

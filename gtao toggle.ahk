@@ -103,7 +103,7 @@ t := Toggles()
     if t.toggles.Has("w") {
         t.toggle("spam", "w")
     }
-    restartGTA(1.5)
+    restartGTA(2)
     t.toggle("spam", "w",, 445000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 }
 
