@@ -17,20 +17,21 @@ class Toggles {
      * @param intervals delay until key is pressed again
      * @param info extra info for the toggle
      */
-    toggle(mode, keyName, holdTime:=50, intervals:=50, info:="", callback:="") {
+    toggle(mode, keyName, holdTime:=50, intervals:=50, info:="", callback?) {
+        identifier := mode . keyName
 
-        if this.toggles.Get(keyName, false) {
-            SetTimer this.toggles[keyName]["callback"], 0
+        if this.toggles.Get(identifier, false) {
+            SetTimer this.toggles[identifier]["callback"], 0
             if mode == "hold" {
                 Send "{" keyName " up}"
             }
-            this.toggles.Delete(keyName) 
+            this.toggles.Delete(identifier) 
             this.updateTooltips_()
             return
         }
 
         hold_(mode, keyName, holdTime){
-            if callback != "" {
+            if IsSet(callback) {
                 callback()
             }
             Send "{" keyName " down}"
@@ -39,22 +40,20 @@ class Toggles {
                 Send "{" keyName " up}"
             }
         }
-        callback := hold_.Bind(mode, keyName, holdTime)
+        mCallback := hold_.Bind(mode, keyName, holdTime)
 
-        setKey_() {
-            this.toggles[keyName] := Map(
-                "callback", callback,
-                "mode", mode,
-                "info", info,
-                "holdTime", holdTime,
-                "intervals", intervals
-            )
-            this.updateTooltips_()
-            return callback
-        }
+        ; Store and display
+        this.toggles[identifier] := Map(
+            "callback", mCallback,
+            "mode", mode,
+            "info", info,
+            "holdTime", holdTime,
+            "intervals", intervals
+        )
+        this.updateTooltips_()
         
-        callback()
-        SetTimer setKey_(), intervals
+        mCallback()
+        SetTimer mCallback, intervals
     }
 
     /**
@@ -99,13 +98,13 @@ class Toggles {
 
 
 t := Toggles()
-*>^F1::t.toggle("spam", "w",, 445000, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
+*>^F1::t.toggle("spam", "w",, 445000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 *>^F2:: {
     if t.toggles.Has("w") {
-        t.toggle("hold", "w")
+        t.toggle("spam", "w")
     }
-    restartGTA(10)
-    t.toggle("hold", "w")
+    restartGTA(1.5)
+    t.toggle("spam", "w",, 445000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 }
 
 ^+F12::t.stopAll()
