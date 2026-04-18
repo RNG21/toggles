@@ -33,7 +33,7 @@ restartGTA(multiplier := 1) {
     loop 2 {
         press("e")
     }
-    press("Enter", 20 * multiplier + 5)
+    press("Enter", 20 * multiplier)
 
     ; Select online tab in pause menu
     WinActivate "ahk_exe GTA5_Enhanced.exe"
@@ -47,7 +47,7 @@ restartGTA(multiplier := 1) {
         press("w")
         press("Enter")
     }
-    press("Enter", 30 * multiplier + 5)
+    press("Enter", 30 * multiplier)
 
     ; Enter job
     WinActivate "ahk_exe GTA5_Enhanced.exe"

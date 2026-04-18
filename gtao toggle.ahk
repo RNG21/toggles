@@ -17,7 +17,7 @@ class Toggles {
      * @param intervals delay until key is pressed again
      * @param info extra info for the toggle
      */
-    toggle(mode, keyName, holdTime:=50, intervals:=50, info:="") {
+    toggle(mode, keyName, holdTime:=50, intervals:=50, info:="", callback:="") {
 
         if this.toggles.Get(keyName, false) {
             SetTimer this.toggles[keyName]["callback"], 0
@@ -30,6 +30,9 @@ class Toggles {
         }
 
         hold_(mode, keyName, holdTime){
+            if callback != "" {
+                callback()
+            }
             Send "{" keyName " down}"
             sleep holdTime
             if mode == "spam"{
@@ -96,12 +99,12 @@ class Toggles {
 
 
 t := Toggles()
-*>^F1::t.toggle("hold", "w",, 445000)
+*>^F1::t.toggle("spam", "w",, 445000, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 *>^F2:: {
     if t.toggles.Has("w") {
         t.toggle("hold", "w")
     }
-    restartGTA(3)
+    restartGTA(10)
     t.toggle("hold", "w")
 }
 
