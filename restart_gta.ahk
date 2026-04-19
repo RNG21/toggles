@@ -47,7 +47,7 @@ restartGTA(multiplier := 1) {
     Run("steam://rungameid/3240220")
     WinWait("Grand Theft Auto V",, 120)
     show("Waiting start")
-    Sleep(70000 * multiplier)
+    Sleep(65000 * multiplier)
     WinActivate("ahk_exe GTA5_Enhanced.exe")
 
 
@@ -57,7 +57,7 @@ restartGTA(multiplier := 1) {
         press("e", 1)
     }
     show("Waiting story")
-    press("Enter", 20 * multiplier)
+    press("Enter", 30 * multiplier)
 
     ; Select online tab in pause menu
     show("Enter online")
@@ -73,7 +73,7 @@ restartGTA(multiplier := 1) {
         press("Enter")
     }
     show("Waiting online")
-    press("Enter", 30 * multiplier)
+    press("Enter", 40 * multiplier)
 
     ; Enter job
     show("Enter job", 10)
