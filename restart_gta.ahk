@@ -57,7 +57,7 @@ restartGTA(multiplier := 1) {
         press("e", 1)
     }
     show("Waiting story")
-    press("Enter", 30 * multiplier)
+    press("Enter", 60 * multiplier)
 
     ; Select online tab in pause menu
     show("Enter online")
