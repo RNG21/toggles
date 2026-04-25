@@ -98,13 +98,13 @@ class Toggles {
 
 
 t := Toggles()
-*>^F1::t.toggle("spam", "enter",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
+*>^F1::t.toggle("spam", "w",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 *>^F2:: {
-    if t.toggles.Has("spamenter") {
-        t.toggle("spam", "enter")
+    if t.toggles.Has("spamw") {
+        t.toggle("spam", "w")
     }
     restartGTA(2)
-    t.toggle("spam", "enter",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
+    t.toggle("spam", "w",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 }
 
 ^+F12::t.stopAll()
