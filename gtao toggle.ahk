@@ -98,12 +98,12 @@ class Toggles {
 
 
 t := Toggles()
-*>^F1::t.toggle("spam", "w",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
-*>^F2:: {
+*^F1::t.toggle("spam", "w",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
+*^F2:: {
     if t.toggles.Has("spamw") {
         t.toggle("spam", "w")
     }
-    restartGTA(2)
+    restartGTA()
     t.toggle("spam", "w",, 300000,, WinActivate.Bind("ahk_exe GTA5_Enhanced.exe"))
 }
 
