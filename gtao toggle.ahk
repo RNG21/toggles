@@ -21,7 +21,7 @@ class Toggles {
         if this.toggles.Get(keyName, false) {
             SetTimer this.toggles[keyName]["callback"], 0
             if mode == "hold" {
-                Send "{" keyName " up}"
+                Send "{Blind}{" keyName " up}"
             }
             this.toggles.Delete(keyName) 
             this.updateTooltips_()
@@ -29,10 +29,10 @@ class Toggles {
         }
 
         hold_(mode, keyName, holdTime){
-            Send "{" keyName " down}"
+            Send "{Blind}{" keyName " down}"
             sleep holdTime
             if mode == "spam"{
-                Send "{" keyName " up}"
+                Send "{Blind}{" keyName " up}"
             }
         }
         callback := hold_.Bind(mode, keyName, holdTime)
@@ -85,7 +85,7 @@ class Toggles {
         ; Stop all callbacks
         for keyName, inner in this.toggles {
             SetTimer inner["callback"], 0
-            Send "{" keyName " up}"
+            Send "{Blind}{" keyName " up}"
         }
         ; Reset vars
         this.toggles := Map()
